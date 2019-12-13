@@ -5,8 +5,8 @@ from mlearn.neuralnet import NeuralNetwork
 from random import shuffle
 import json 
 
-make_letter_json(600) # generate letter data into a json file
-letter_data = letter_json_load() # load letter data from a json file
+make_letter_json(600, filename="letters.json") # generate letter data into a json file called letters.json
+letter_data = letter_json_load(filename="letters.json") # load letter data from a json file called letters.json
 
 # print data
 #print('training data:')
