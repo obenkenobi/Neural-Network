@@ -1,7 +1,7 @@
 # Neural-Network
 Machine-Learning/Neural-Network program that takes binary arrays and classifies them as L or H
 
-To run this program, type:
+To run this program, go to the root directory of this repository in your terminal and type:
 	
 	python main.py
 
