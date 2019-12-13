@@ -19,11 +19,11 @@ class NeuralNetwork:
         """
         self._h_matrix = []
         self._l_matrix = []
-        self._s_list = []
+        self._j_list = []
     
     @property
-    def s_list_len(self):
-        return len(self._s_list)
+    def j_list_len(self):
+        return len(self._j_list)
     
     @property
     def h_matrix(self):
@@ -34,55 +34,55 @@ class NeuralNetwork:
         return self._l_matrix.copy()
     
     @property
-    def s_list(self):
-        return self._s_list.copy()
+    def j_list(self):
+        return self._j_list.copy()
     
     def __str__(self):
-        return "s list/set:\n"+matrix_str(self.s_list)+"\nH matrix:\n"+matrix_str(self.h_matrix)+"\nL matrix:\n"+matrix_str(self.l_matrix)
+        return "J list/set:\n"+matrix_str(self.j_list)+"\nH matrix:\n"+matrix_str(self.h_matrix)+"\nL matrix:\n"+matrix_str(self.l_matrix)
     
-    def train(self, h_data, l_data, s_tuple_len=3):
+    def train(self, h_data, l_data, j_tuple_len=3):
         """
         trains the neural network using h_data which is an array of arrays where each array can be classified as 'H',
         the same applies for l_data except the data is classified as l.
         
-        s_tuple_len is some value such the length of all the arrays in h_data and l_data is divsible by it.
+        j_tuple_len is some value such the length of all the arrays in h_data and l_data is divsible by it.
         This value is used to indicate the how much data is prescribed to a single pattern in our neural network.
         """
         len_arr = len(h_data[0])
         
         if not list_len_equal(h_data + l_data, len_arr):
             raise Exception("All lists must be of the same length")
-        if not divisible(len_arr, s_tuple_len):
-            raise Exception("list lengths must be divisible by s_tuple_len")
+        if not divisible(len_arr, j_tuple_len):
+            raise Exception("list lengths must be divisible by j_tuple_len")
         
         indexes = shuffled_indexes(len_arr)
         
         # setup s list
-        self._s_list = []
-        for i in range(0,len_arr,s_tuple_len):
-            s_tuple = tuple(indexes[i:i+s_tuple_len])
-            self._s_list.append(s_tuple)
-        s_list_len = self.s_list_len
+        self._j_list = []
+        for i in range(0,len_arr,j_tuple_len):
+            j_tuple = tuple(indexes[i:i+j_tuple_len])
+            self._j_list.append(j_tuple)
+        j_list_len = self.j_list_len
             
         # setup matrix columns
-        matrix_cols = btuple_to_num([1]*s_tuple_len)+1
+        matrix_cols = btuple_to_num([1]*j_tuple_len)+1
         for i in range(matrix_cols):
-           self._h_matrix.append([0]*s_list_len)
-           self._l_matrix.append([0]*s_list_len)
+           self._h_matrix.append([0]*j_list_len)
+           self._l_matrix.append([0]*j_list_len)
            
         # storing h data
         for h_arr in h_data:
-            for row in range(s_list_len):
-                min_index = row*s_tuple_len
-                h_tuple = h_arr[min_index:min_index+s_tuple_len]
+            for row in range(j_list_len):
+                min_index = row*j_tuple_len
+                h_tuple = h_arr[min_index:min_index+j_tuple_len]
                 h_num = btuple_to_num(h_tuple)
                 self._h_matrix[h_num][row] += 1
         
         # storing l data
         for l_arr in l_data:
-            for row in range(s_list_len):
-                min_index = row*s_tuple_len
-                l_tuple = l_arr[min_index:min_index+s_tuple_len]
+            for row in range(j_list_len):
+                min_index = row*j_tuple_len
+                l_tuple = l_arr[min_index:min_index+j_tuple_len]
                 l_num = btuple_to_num(l_tuple)
                 self._l_matrix[l_num][row] += 1
                 
@@ -92,10 +92,10 @@ class NeuralNetwork:
         predicts what letter the letter array is
         """
         h_sum, l_sum = 0, 0
-        s_list_len, s_tuple_len = self.s_list_len, len(self._s_list[0])
-        for row in range(s_list_len):
-            min_index = row*s_tuple_len
-            letter_tuple = letter[min_index:min_index+s_tuple_len]
+        j_list_len, j_tuple_len = self.j_list_len, len(self._j_list[0])
+        for row in range(j_list_len):
+            min_index = row*j_tuple_len
+            letter_tuple = letter[min_index:min_index+j_tuple_len]
             letter_num = btuple_to_num(letter_tuple)
             h_sum += self._h_matrix[letter_num][row]
             l_sum += self._l_matrix[letter_num][row]
