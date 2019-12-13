@@ -65,6 +65,7 @@ class NeuralNetwork:
         j_list_len = self.j_list_len
             
         # setup matrix columns
+        self._h_matrix, self._l_matrix = [], []
         matrix_cols = btuple_to_num([1]*j_tuple_len)+1
         for i in range(matrix_cols):
            self._h_matrix.append([0]*j_list_len)
