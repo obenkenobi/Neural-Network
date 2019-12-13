@@ -3,6 +3,7 @@ from mlearn.helper import btuple_to_num
 from mlearn.helper import list_len_equal
 from mlearn.helper import divisible
 from mlearn.helper import shuffled_indexes
+from mlearn.helper import matrix_str
 from random import randint
 
 class NeuralNetwork:
@@ -22,6 +23,21 @@ class NeuralNetwork:
     @property
     def s_list_len(self):
         return len(self._s_list)
+    
+    @property
+    def h_matrix(self):
+        return self._h_matrix.copy()
+    
+    @property
+    def l_matrix(self):
+        return self._l_matrix.copy()
+    
+    @property
+    def s_list(self):
+        return self._s_list.copy()
+    
+    def __str__(self):
+        return "s list/set:\n"+matrix_str(self.s_list)+"\nH matrix:\n"+matrix_str(self.h_matrix)+"\nL matrix:\n"+matrix_str(self.l_matrix)
     
     def train(self, h_data, l_data, s_tuple_len=3):
         """

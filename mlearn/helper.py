@@ -40,6 +40,14 @@ def shuffled_indexes(length):
     indexes = list(range(length))
     shuffle(indexes)
     return indexes
+
+def matrix_str(matrix):
+    matrix_str = ''
+    index = 0
+    for row in matrix:
+        matrix_str += '\t'+ str(index) +' : '+ str(row) +'\n'
+        index += 1
+    return matrix_str
         
     
     

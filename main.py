@@ -24,10 +24,10 @@ letter_data = letter_json_load(filename="letters.json") # load letter data from 
 #print('training data:')
 #print(json.dumps(letter_data, indent=2))
 
-print_length = True # if true, the lengths of training and testing will then be printed
-
 accuracy_sum = 0
-iterations = 100 
+iterations = 25 
+net = None
+h_training, h_testing, l_training, l_testing = None, None, None, None
 
 # in each iteration, the data will be shuffled and have its accuracy calculated so that the average accuracy is calculated
 for i in range(iterations):
@@ -39,15 +39,16 @@ for i in range(iterations):
     # extract training and testing data
     h_training, h_testing, l_training, l_testing = letter_data['H'][:200], letter_data['H'][200:], letter_data['L'][:200], letter_data['L'][200:]
 
-    if print_length: 
-        print_datalength(h_training, h_testing, l_training, l_testing)
-        print_length = False
-
     net = NeuralNetwork() # create a neural network object (currently not trained and setup)
     net.train(h_training, l_training) # trains the neural network
     accuracy = net.test(h_testing, l_testing) # gets the accurracy of the neural network
     accuracy_sum += accuracy
+    print('-------------------------------------------')
+    print('Neural Network: '+str(i+1)+'\n')
+    print(net)
+    print('accuracy: ',accuracy*100,'%')
 
+print_datalength(h_training, h_testing, l_training, l_testing)
 avg_accuracy = accuracy_sum/iterations
 print('Tests = '+str(iterations))
 print('average accuracy: ', round(avg_accuracy*100, 2),"%")
