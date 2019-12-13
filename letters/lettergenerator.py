@@ -39,7 +39,7 @@ def generate_h():
             1,0,randint(0,1),
             1,1,0,
             1,randint(0,1),1,
-            1,randint(0,1),1
+            1,0,1
         ]
     elif pattern == 6:
         return [
@@ -86,7 +86,7 @@ def generate_l():
     elif pattern == 4:
         return [
             1,randint(0,1),0,
-            randint(0,1),randint(0,1),0,
+            1,randint(0,1),0,
             1,randint(0,1),0,
             1,randint(0,1),0
         ]
@@ -94,7 +94,7 @@ def generate_l():
         return [
             1,randint(0,1),0,
             1,randint(0,1),0,
-            1,randint(0,1),randint(0,1),
+            1,randint(0,1),0,
             1,randint(0,1),randint(0,1)
         ]
     elif pattern == 6:
