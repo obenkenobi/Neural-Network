@@ -48,6 +48,16 @@ def matrix_str(matrix):
         matrix_str += '\t'+ str(index) +' : '+ str(row) +'\n'
         index += 1
     return matrix_str
+
+def dict_list_str(dict_list):
+    string = ''
+    for dictionary in dict_list:
+        string += '\t'
+        for key in dictionary:
+            string += str(key) + ': ' + str(dictionary[key]) +', '
+        string = string[:-2]
+        string += '\n'
+    return string
         
     
     

@@ -2,6 +2,7 @@
 from letters.letter_json import make_letter_json
 from letters.letter_json import letter_json_load
 from mlearn.neuralnet import NeuralNetwork
+from mlearn.helper import dict_list_str
 from random import shuffle
 #from math import round
 import json 
@@ -25,13 +26,13 @@ letter_data = letter_json_load(filename="letters.json") # load letter data from 
 #print(json.dumps(letter_data, indent=2))
 
 accuracy_sum = 0
-iterations = 25 
+iterations = 100 
 net = None
 h_training, h_testing, l_training, l_testing = None, None, None, None
 
 # in each iteration, the data will be shuffled and have its accuracy calculated so that the average accuracy is calculated
 for i in range(iterations):
-
+    results = []
     #shuffle the data
     shuffle(letter_data['H'])
     shuffle(letter_data['L'])
@@ -41,11 +42,12 @@ for i in range(iterations):
 
     net = NeuralNetwork() # create a neural network object (currently not trained and setup)
     net.train(h_training, l_training) # trains the neural network
-    accuracy = net.test(h_testing, l_testing) # gets the accurracy of the neural network
+    accuracy, results = net.test(h_testing, l_testing) # tests the neural network and returns the accuracy and results
     accuracy_sum += accuracy
-    print('-------------------------------------------')
+    print('-------------------------------------------\n')
     print('Neural Network: '+str(i+1)+'\n')
     print(net)
+    print('Results:\n'+dict_list_str(results))
     print('accuracy: ',accuracy*100,'%')
 
 print_datalength(h_training, h_testing, l_training, l_testing)

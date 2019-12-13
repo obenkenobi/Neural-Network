@@ -5,6 +5,7 @@ from mlearn.helper import divisible
 from mlearn.helper import shuffled_indexes
 from mlearn.helper import matrix_str
 from random import randint
+from random import shuffle
 
 class NeuralNetwork:
     """
@@ -110,11 +111,30 @@ class NeuralNetwork:
         Takes testing data, both array of arrays where each array is a letter array and tests how accurate our neural
         network is. It is assumed h_data is classified as 'H' and l_data is classified as 'L'
         """
+        results = []
         correct = 0
+        
         for letter in h_data:
-            if self.predict(letter) == 'H':
+            letter = letter.copy()
+            prediction = self.predict(letter)
+            if prediction == 'H':
+                letter.append(True)
                 correct += 1
+            else:
+                letter.append(False)
+            results.append({'Actual class': 'H', 'Predicted class': prediction, 'array': letter})
+        
         for letter in l_data:
-            if self.predict(letter) == 'L':
+            letter = letter.copy()
+            prediction = self.predict(letter)
+            if prediction == 'L':
+                letter.append(True)
                 correct += 1
-        return correct/(len(h_data) + len(l_data))
+            else:
+                letter.append(False)
+            results.append({'Actual class': 'L', 'Predicted class': prediction, 'array': letter})
+            
+            shuffle(results)
+            #print(results)
+                
+        return correct/(len(h_data) + len(l_data)), results
