@@ -10,12 +10,14 @@ def print_datalength(h_training, h_testing, l_training, l_testing):
     """
     prints lengths of training and testing data
     """
+    print('-------------------------------------------')
     print('H training data length: ', len(h_training))
     print('H testing data length: ', len(h_testing))
     print('L training data length: ', len(l_training))
     print('L testing data length: ', len(l_testing))
+    print('-------------------------------------------')
 
-make_letter_json(600, filename="letters.json") # generate letter data into a json file called letters.json
+make_letter_json(600, filename="letters.json") # randomly generate letter data into a json file called letters.json
 letter_data = letter_json_load(filename="letters.json") # load letter data from a json file called letters.json
 
 # print data
@@ -47,6 +49,7 @@ for i in range(iterations):
     accuracy_sum += accuracy
 
 avg_accuracy = accuracy_sum/iterations
+print('Tests = '+str(iterations))
 print('average accuracy: ', round(avg_accuracy*100, 2),"%")
 
 
