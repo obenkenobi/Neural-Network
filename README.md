@@ -9,5 +9,6 @@ Also a json file will be generated when you run this program called letters.json
 the data catagorizing which array is H and which is L.
 
 Keep in mind this program relies on randomly generated and shuffled data meaning the accuracy of the
-neural network will change for each run. On average the accuracy will be above 90%.
+neural network will change for each run.This program will test a neural network a certain amount of times printing
+the results for each run including the accuracy, the testing arrays, etc. Afterwards the average accuracy for all these test runs will be calculated.
 
