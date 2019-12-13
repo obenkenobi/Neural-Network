@@ -5,13 +5,105 @@ def generate_h():
     """
     generator that generates a random H array
     """
-    return [1,0,randint(0,1),1,1,1,randint(0,1),randint(0,1),1,1,0,1]
+    pattern = randint(1,6)
+    if pattern == 1:
+        return [
+            1,0,randint(0,1),
+            1,1,1,
+            1, randint(0,1),1,
+            1,0,1
+        ]
+    elif pattern == 2:
+        return [
+            1,0,randint(0,1),
+            1,randint(0,1),1,
+            1,0,1,
+            1,0,1
+        ]
+    elif pattern == 3:
+        return [
+            1,0,randint(0,1),
+            1,randint(0,1),0,
+            1,1,1,
+            1,0,1
+        ]
+    elif pattern == 4:
+        return [
+            1,0,randint(0,1),
+            1,1,0,
+            1,randint(0,1),1,
+            1,0,1
+        ]
+    elif pattern == 5:
+        return [
+            1,0,randint(0,1),
+            1,1,0,
+            1,randint(0,1),1,
+            1,randint(0,1),1
+        ]
+    elif pattern == 6:
+        return [
+            1,0,randint(0,1),
+            1,randint(0,1),0,
+            1,1,1,
+            1,randint(0,1),1
+        ]
+    elif pattern == 6:
+        return [
+            1,0,randint(0,1),
+            1,randint(0,1),1,
+            1,1,1,
+            1,randint(0,1),1
+        ]
+
 
 def generate_l():
     """
     generator that generates a random L array
     """
-    return [1,0,0,randint(0,1),0,0,1,0,randint(0,1),1,1,randint(0,1)]
+    pattern = randint(1,6)
+    if pattern == 1:
+        return [
+            1,0,0,
+            randint(0,1),0,0,
+            1,0,randint(0,1),
+            1,1,randint(0,1)
+        ]
+    elif pattern == 2:
+        return [
+            1,0,0,
+            randint(0,1),0,0,
+            1,0,0,
+            1,randint(0,1),randint(0,1)
+        ]
+    elif pattern == 3:
+        return [
+            1,0,randint(0,1),
+            randint(0,1),0,0,
+            1,0,0,
+            1,randint(0,1),randint(0,1)
+        ]
+    elif pattern == 4:
+        return [
+            1,randint(0,1),0,
+            randint(0,1),randint(0,1),0,
+            1,randint(0,1),0,
+            1,randint(0,1),0
+        ]
+    elif pattern == 5:
+        return [
+            1,randint(0,1),0,
+            1,randint(0,1),0,
+            1,randint(0,1),randint(0,1),
+            1,randint(0,1),randint(0,1)
+        ]
+    elif pattern == 6:
+        return [
+            1,0,randint(0,1),
+            1,0,0,
+            1,randint(0,1),randint(0,1),
+            1,1,1
+        ]
 
 def generate_letter_list(generator, length=300):
     """
