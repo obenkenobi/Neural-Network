@@ -6,7 +6,15 @@ from mlearn.helper import shuffled_indexes
 from random import randint
 
 class NeuralNetwork:
+    """
+    Neural network class. This class defines a neural network that categorizes data based on
+    two binary categories, 'L' or 'H'. It is initially untrained and must be trained afterwards.
+    """
+    
     def __init__(self):
+        """
+        initializes neural network class but doesn't trains it
+        """
         self._h_matrix = []
         self._l_matrix = []
         self._s_list = []
@@ -16,6 +24,13 @@ class NeuralNetwork:
         return len(self._s_list)
     
     def train(self, h_data, l_data, s_tuple_len=3):
+        """
+        trains the neural network using h_data which is an array of arrays where each array can be classified as 'H',
+        the same applies for l_data except the data is classified as l.
+        
+        s_tuple_len is some value such the length of all the arrays in h_data and l_data is divsible by it.
+        This value is used to indicate the how much data is prescribed to a single pattern in our neural network.
+        """
         len_arr = len(h_data[0])
         
         if not list_len_equal(h_data + l_data, len_arr):
@@ -56,6 +71,9 @@ class NeuralNetwork:
                 
 
     def predict(self, letter):
+        """
+        predicts what letter the letter array is
+        """
         h_sum, l_sum = 0, 0
         s_list_len, s_tuple_len = self.s_list_len, len(self._s_list[0])
         for row in range(s_list_len):
@@ -72,6 +90,10 @@ class NeuralNetwork:
             return 'H' if randint(0,1) == 0 else 'L'
     
     def test(self, h_data, l_data):
+        """
+        Takes testing data, both array of arrays where each array is a letter array and tests how accurate our neural
+        network is. It is assumed h_data is classified as 'H' and l_data is classified as 'L'
+        """
         correct = 0
         for letter in h_data:
             if self.predict(letter) == 'H':
