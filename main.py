@@ -4,7 +4,6 @@ from letters.letter_json import letter_json_load
 from mlearn.neuralnet import NeuralNetwork
 from mlearn.helper import dict_list_str
 from random import shuffle
-#from math import round
 import json 
 
 def print_datalength(h_training, h_testing, l_training, l_testing):
@@ -18,10 +17,6 @@ def print_datalength(h_training, h_testing, l_training, l_testing):
 
 make_letter_json(600, filename="letters.json") # randomly generate letter data into a json file called letters.json
 letter_data = letter_json_load(filename="letters.json") # load letter data from a json file called letters.json
-
-# print data
-#print('training data:')
-#print(json.dumps(letter_data, indent=2))
 
 accuracy_sum = 0
 iterations = 100 
