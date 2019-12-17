@@ -16,6 +16,21 @@ def print_datalength(h_training, h_testing, l_training, l_testing):
     print('\tL training data length: ', len(l_training))
     print('\tL testing data length: ', len(l_testing))
 
+tuple_size = input("Insert tuple size that 12 can divide by (default = 3): ")
+try:
+    tuple_size = int(tuple_size)
+    if tuple_size <= 0 or 12 % tuple_size > 0:
+        raise Exception("tuple size must be greater than 0")
+except ValueError as e:
+    print("Must input a number, setting tuple size to default size, 3")
+    tuple_size = 3
+except Exception as e:
+    print("Number must be greater than 0 or must be a value 12 is divisable by")
+    print("setting tuple_size to default size, 3")
+    tuple_size = 3
+input("Press any Enter to continue")
+    
+
 make_letter_json(600, filename="letters.json") # randomly generate letter data into a json file called letters.json
 letter_data = letter_json_load(filename="letters.json") # load letter data from a json file called letters.json
 
@@ -29,6 +44,7 @@ for i in range(iterations):
     print('Neural Network Test '+str(i+1)+'\n')
     print('shuffling data...\n')
     #shuffle the data
+    
     shuffle(letter_data['H'])
     shuffle(letter_data['L'])
 
@@ -36,7 +52,7 @@ for i in range(iterations):
     h_training, h_testing, l_training, l_testing = letter_data['H'][:200], letter_data['H'][200:], letter_data['L'][:200], letter_data['L'][200:]
     print_datalength(h_training, h_testing, l_training, l_testing)
 
-    net.train(h_training, l_training) # trains the neural network
+    net.train(h_training, l_training, j_tuple_len=tuple_size) # trains the neural network
     accuracy, results = net.test(h_testing, l_testing) # tests the neural network and returns the accuracy and results
     accuracy_sum += accuracy
     print('\n---------------------------\n  Trained neural network  |\n---------------------------\n\n'+str(net))

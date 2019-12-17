@@ -45,7 +45,8 @@ class NeuralNetwork:
         trains the neural network using h_data which is an array of arrays where each array can be classified as 'H',
         the same applies for l_data except the data is classified as l.
         
-        j_tuple_len is some value such the length of all the arrays in h_data and l_data is divsible by it.
+        j_tuple_len is the tuple size.
+        Its value must be such that the length of all the arrays in h_data and l_data is divsible by it.
         This value is used to indicate the how much data is prescribed to a single pattern in our neural network.
         """
         len_arr = len(h_data[0])
