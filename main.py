@@ -45,7 +45,7 @@ for i in range(iterations):
 
 avg_accuracy = accuracy_sum/iterations
 print('\n---------------------------------------------------------------------------------------------------------------\n')
-print('Tests = '+str(iterations))
+print('Total tests: '+str(iterations))
 print('average accuracy: ', round(avg_accuracy*100, 2),"%")
 
 

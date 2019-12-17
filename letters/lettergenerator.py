@@ -109,10 +109,7 @@ def generate_letter_list(generator, length=300):
     """
     generates a list of letter arrays using a generator function and a defined array length
     """
-    letter_list = []
-    for i in range(length):
-        letter_list.append(generator())
-    return letter_list
+    return [generator() for i in range(length)]
 
 def generate_h_list(length=300):
     """
