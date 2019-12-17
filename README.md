@@ -5,8 +5,8 @@ To run this program, go to the root directory of this repository in your termina
 	
 	python main.py
 
-Also a json file will be generated when you run this program called letters.json which store
-the data catagorizing which array is H and which is L.
+Once you start the program, you will be prompted to choose your tuple size.	
+After a json file will be generated called letters.json which store the data catagorizing which array is H and which is L.
 
 Keep in mind this program relies on randomly generated and shuffled data meaning the accuracy of the
 neural network will change for each run.This program will test a neural network a certain amount of times printing
